@@ -155,10 +155,11 @@ p {
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 1rem 0;
-  background: rgba(255, 248, 240, 0.92);
+  padding: 0.5rem 0;
+  background: rgba(255, 248, 240, 0.95);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
   transition: var(--transition);
 }
 
@@ -184,7 +185,7 @@ p {
 }
 
 .nav__logo img {
-  height: 56px;
+  height: 120px;
   width: auto;
 }
 
@@ -345,7 +346,7 @@ p {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 5rem;
+  padding-top: 9rem;
   position: relative;
   overflow: hidden;
 }
@@ -481,6 +482,13 @@ p {
   background: var(--cream-dark);
   position: relative;
   overflow: hidden;
+}
+
+.card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .card__img-placeholder {
@@ -794,7 +802,7 @@ p {
    ========================================= */
 
 .page-hero {
-  padding: 9rem 0 5rem;
+  padding: 12rem 0 5rem;
   background: linear-gradient(160deg, var(--cream) 0%, var(--cream-mid) 100%);
   position: relative;
   overflow: hidden;
@@ -967,7 +975,7 @@ p {
 }
 
 .footer__logo img {
-  height: 52px;
+  height: 156px;
   filter: brightness(0) invert(1);
   margin-bottom: 1.25rem;
 }
