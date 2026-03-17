@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nieuws — Bokes & Soep</title>
+  <meta name="description" content="Blijf op de hoogte van het laatste nieuws, evenementen en verhalen van vzw Burgers in Beweging en Bokes & Soep.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="logos/logo_kleur_3000px.png">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="main-nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo">
+          <img src="logos/logo_kleur_3000px.png" alt="Bokes & Soep logo">
+        </a>
+        <ul class="nav__links">
+          <li><a href="index.html" class="nav__link">Home</a></li>
+          <li><a href="over-ons.html" class="nav__link">Over ons</a></li>
+          <li><a href="team.html" class="nav__link">Team</a></li>
+          <li><a href="nieuws.html" class="nav__link active">Nieuws</a></li>
+          <li><a href="doneer.html" class="nav__link" style="color: var(--red); font-weight: 900;">Doneer</a></li>
+          <li><a href="contact.html" class="nav__link nav__cta">Contact</a></li>
+        </ul>
+        <button class="nav__hamburger" id="hamburger" aria-label="Menu openen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="nav__mobile" id="mobile-nav">
+    <a href="index.html" class="nav__link">Home</a>
+    <a href="over-ons.html" class="nav__link">Over ons</a>
+    <a href="team.html" class="nav__link">Team</a>
+    <a href="nieuws.html" class="nav__link active">Nieuws</a>
+    <a href="contact.html" class="nav__link" style="color: var(--red); margin-top: 1rem;">Contacteer ons →</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="page-hero__eyebrow">Nieuws &amp; verhalen</span>
+      <h1 class="page-hero__title animate-fade-up">
+        Alles wat er <em>beweegt</em><br>bij Bokes &amp; Soep
+      </h1>
+      <p class="page-hero__lead animate-fade-up animate-delay-1">
+        Van nieuwste projecten en evenementen tot hartverwarmende verhalen uit de keuken en van de schoolpleinen —
+        hier vind je alles wat er leeft bij vzw Burgers in Beweging.
+      </p>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTIKEL -->
+  <section class="section section--white">
+    <div class="container">
+      <span class="label" style="display: block; margin-bottom: 1.5rem;">Uitgelicht</span>
+      <div style="background: var(--cream); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-md);" class="reveal">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; min-height: 400px;">
+          <div style="background: linear-gradient(135deg, var(--red-light) 0%, var(--cream-dark) 100%); display: flex; align-items: center; justify-content: center; font-size: 8rem; padding: 3rem;">
+            🏆
+          </div>
+          <div style="padding: 3.5rem; display: flex; flex-direction: column; justify-content: center;">
+            <div class="news-meta" style="margin-bottom: 1rem;">
+              <span class="news-date">5 januari 2026</span>
+              <span class="news-tag">Award</span>
+            </div>
+            <h2 style="font-size: clamp(1.5rem, 3vw, 2.25rem); margin-bottom: 1.25rem; line-height: 1.2;">
+              Bokes &amp; Soep wint de Sociale Innovatieprijs 2025
+            </h2>
+            <p style="margin-bottom: 2rem; font-size: 1rem;">
+              We zijn enorm trots! De stad Genk reikte ons de Sociale Innovatieprijs 2025 uit voor ons werk voor kwetsbare kinderen.
+              Een geweldige erkenning voor ons hele team van vrijwilligers. Dit is hun verdienste.
+            </p>
+            <a href="#artikel-award" class="btn btn--primary" style="align-self: flex-start;">Lees het volledige artikel</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NIEUWS GRID -->
+  <section class="section section--cream">
+    <div class="container">
+      <!-- Filters -->
+      <div style="display: flex; gap: 0.75rem; margin-bottom: 3rem; flex-wrap: wrap;" class="reveal">
+        <button class="btn btn--primary" style="font-size: 0.875rem; padding: 0.6rem 1.25rem;" onclick="filterNews('all', this)">Alles</button>
+        <button class="btn btn--outline" style="font-size: 0.875rem; padding: 0.6rem 1.25rem;" onclick="filterNews('nieuws', this)">Nieuws</button>
+        <button class="btn btn--outline" style="font-size: 0.875rem; padding: 0.6rem 1.25rem;" onclick="filterNews('evenement', this)">Evenementen</button>
+        <button class="btn btn--outline" style="font-size: 0.875rem; padding: 0.6rem 1.25rem;" onclick="filterNews('verhaal', this)">Verhalen</button>
+      </div>
+
+      <div class="grid-3" id="news-grid">
+
+        <!-- Artikel 1 -->
+        <div class="card reveal news-item" data-category="nieuws">
+          <div class="card__img">
+            <div class="card__img-placeholder">📊</div>
+          </div>
+          <div class="card__body">
+            <div class="news-meta">
+              <span class="news-date">10 maart 2026</span>
+              <span class="news-tag">Nieuws</span>
+            </div>
+            <h3 class="card__title">Recordaantal scholen bereikt dit schooljaar!</h3>
+            <p class="card__text">
+              Met 12 partnerscholen en meer dan 500 kinderen per week breken we ons eigen record.
+              Dankzij extra vrijwilligers en een nieuwe logistieke aanpak kunnen we verder groeien.
+            </p>
+            <a href="#" class="card__link">Lees meer →</a>
+          </div>
+        </div>
+
+        <!-- Artikel 2 -->
+        <div class="card reveal news-item" data-category="evenement">
+          <div class="card__img">
+            <div class="card__img-placeholder">🎉</div>
+          </div>
+          <div class="card__body">
+            <div class="news-meta">
+              <span class="news-date">22 februari 2026</span>
+              <span class="news-tag">Evenement</span>
+            </div>
+            <h3 class="card__title">Vrijwilligersdag op zaterdag 4 april</h3>
+            <p class="card__text">
+              We organiseren een gezellige vrijwilligersdag voor iedereen die wil kennismaken met Bokes &amp; Soep.
+              Kom koken, proosten en lachen met ons team!
+            </p>
+            <a href="contact.html" class="card__link">Schrijf je in →</a>
+          </div>
+        </div>
+
+        <!-- Artikel 3 -->
+        <div class="card reveal news-item" data-category="verhaal" id="artikel-award">
+          <div class="card__img">
+            <div class="card__img-placeholder">🏆</div>
+          </div>
+          <div class="card__body">
+            <div class="news-meta">
+              <span class="news-date">5 januari 2026</span>
+              <span class="news-tag">Award</span>
+            </div>
+            <h3 class="card__title">Sociale Innovatieprijs 2025 voor vzw Burgers in Beweging</h3>
+            <p class="card__text">
+              Schepen van Sociale Zaken Paula Leynen reikte de prijs persoonlijk uit tijdens de Nieuwjaarsreceptie
+              van de stad Genk. "Dit initiatief maakt het verschil voor honderden kinderen," zei ze.
+            </p>
+            <a href="#" class="card__link">Lees meer →</a>
+          </div>
+        </div>
+
+        <!-- Artikel 4 -->
+        <div class="card reveal news-item" data-category="verhaal">
+          <div class="card__img">
+            <div class="card__img-placeholder">👦</div>
+          </div>
+          <div class="card__body">
+            <div class="news-meta">
+              <span class="news-date">18 november 2025</span>
+              <span class="news-tag">Verhaal</span>
+            </div>
+            <h3 class="card__title">"Die soep is mijn lievelingseten" — over de impact op kinderen</h3>
+            <p class="card__text">
+              Leerkracht Sofie van basisschool De Regenboog vertelt hoe Bokes &amp; Soep het klasklimaat heeft veranderd.
+              Kinderen komen 's vrijdags met meer plezier naar school.
+            </p>
+            <a href="#" class="card__link">Lees meer →</a>
+          </div>
+        </div>
+
+        <!-- Artikel 5 -->
+        <div class="card reveal news-item" data-category="nieuws">
+          <div class="card__img">
+            <div class="card__img-placeholder">🤝</div>
+          </div>
+          <div class="card__body">
+            <div class="news-meta">
+              <span class="news-date">3 oktober 2025</span>
+              <span class="news-tag">Nieuws</span>
+            </div>
+            <h3 class="card__title">Nieuwe samenwerking met Bakkerij 't Broodhuys</h3>
+            <p class="card__text">
+              We zijn erg blij met onze nieuwe partnership! Bakkerij 't Broodhuys in Genk levert ons voortaan
+              elke week vers brood aan een vriendentarief. Lokaal samenwerken voor lokale kinderen.
+            </p>
+            <a href="#" class="card__link">Lees meer →</a>
+          </div>
+        </div>
+
+        <!-- Artikel 6 -->
+        <div class="card reveal news-item" data-category="evenement">
+          <div class="card__img">
+            <div class="card__img-placeholder">🍂</div>
+          </div>
+          <div class="card__body">
+            <div class="news-meta">
+              <span class="news-date">12 september 2025</span>
+              <span class="news-tag">Evenement</span>
+            </div>
+            <h3 class="card__title">Terugblik: zomerfestival Burgers in Beweging</h3>
+            <p class="card__text">
+              Ruim 300 bezoekers kwamen naar ons zomerfestival op het Stadsplein van Genk. Een geslaagd feest
+              met muziek, soep, bokes en veel lach! Bedankt aan iedereen die erbij was.
+            </p>
+            <a href="#" class="card__link">Lees meer →</a>
+          </div>
+        </div>
+
+        <!-- Artikel 7 -->
+        <div class="card reveal news-item" data-category="verhaal">
+          <div class="card__img">
+            <div class="card__img-placeholder">👵</div>
+          </div>
+          <div class="card__body">
+            <div class="news-meta">
+              <span class="news-date">28 augustus 2025</span>
+              <span class="news-tag">Verhaal</span>
+            </div>
+            <h3 class="card__title">Bertha (72): "Op mijn leeftijd kom ik hier voor mezelf"</h3>
+            <p class="card__text">
+              Bertha doet al twee jaar mee als vrijwilligster in de keuken. Ze vertelt hoe het werk haar leven
+              kleur geeft en waarom ze nooit meer wil stoppen.
+            </p>
+            <a href="#" class="card__link">Lees meer →</a>
+          </div>
+        </div>
+
+        <!-- Artikel 8 -->
+        <div class="card reveal news-item" data-category="nieuws">
+          <div class="card__img">
+            <div class="card__img-placeholder">💶</div>
+          </div>
+          <div class="card__body">
+            <div class="news-meta">
+              <span class="news-date">15 juni 2025</span>
+              <span class="news-tag">Nieuws</span>
+            </div>
+            <h3 class="card__title">Subsidie van de Vlaamse overheid: wat betekent dit voor ons?</h3>
+            <p class="card__text">
+              We ontvingen een werkingssubsidie van de Vlaamse overheid voor de komende twee jaar.
+              Hierdoor kunnen we onze werking uitbreiden en meer kinderen bereiken.
+            </p>
+            <a href="#" class="card__link">Lees meer →</a>
+          </div>
+        </div>
+
+        <!-- Artikel 9 -->
+        <div class="card reveal news-item" data-category="evenement">
+          <div class="card__img">
+            <div class="card__img-placeholder">🎄</div>
+          </div>
+          <div class="card__body">
+            <div class="news-meta">
+              <span class="news-date">20 december 2024</span>
+              <span class="news-tag">Evenement</span>
+            </div>
+            <h3 class="card__title">Kerstsoep voor 800 kinderen: onze grootste actie ooit</h3>
+            <p class="card__text">
+              Met kerst gingen we een stapje verder: speciale kerstsoep voor alle scholen én een kleine verrassing
+              in elke portie. De reacties van de kinderen deden ons hart smelten.
+            </p>
+            <a href="#" class="card__link">Lees meer →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NIEUWSBRIEF -->
+  <section class="section section--red">
+    <div class="container">
+      <div style="max-width: 600px; margin: 0 auto; text-align: center;" class="reveal">
+        <span class="label" style="color: rgba(255,255,255,0.65); display: block; margin-bottom: 1rem;">Blijf op de hoogte</span>
+        <h2 style="color: var(--white); margin-bottom: 1rem;">Schrijf je in op<br>onze nieuwsbrief</h2>
+        <p style="color: rgba(255,255,255,0.75); margin-bottom: 2rem;">
+          Ontvang maandelijks updates over onze activiteiten, nieuws en hartverwarmende verhalen.
+          Geen spam — beloofd.
+        </p>
+        <form style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;" onsubmit="handleNewsletterSubmit(event)">
+          <input
+            type="email"
+            placeholder="jouw@emailadres.be"
+            required
+            style="flex: 1; min-width: 240px; padding: 0.875rem 1.25rem; border: 2px solid rgba(255,255,255,0.3); border-radius: var(--radius-full); background: rgba(255,255,255,0.15); color: var(--white); font-family: var(--font-body); font-size: 1rem; outline: none; transition: border-color 0.3s;"
+            id="newsletter-email"
+          >
+          <button type="submit" class="btn btn--white">Inschrijven</button>
+        </form>
+        <p id="newsletter-msg" style="color: rgba(255,255,255,0); margin-top: 1rem; font-size: 0.9rem; transition: color 0.3s;"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__logo">
+            <img src="logos/logo_kleur_3000px.png" alt="Bokes & Soep">
+          </div>
+          <p class="footer__tagline">
+            vzw Burgers in Beweging bezorgt wekelijks vers brood en warme soep aan
+            schoolkinderen in Genk.
+          </p>
+        </div>
+        <div>
+          <p class="footer__title">Navigatie</p>
+          <ul class="footer__links">
+            <li><a href="index.html" class="footer__link">Home</a></li>
+            <li><a href="over-ons.html" class="footer__link">Over ons</a></li>
+            <li><a href="team.html" class="footer__link">Team</a></li>
+            <li><a href="nieuws.html" class="footer__link">Nieuws</a></li>
+            <li><a href="contact.html" class="footer__link">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__title">Meedoen</p>
+          <ul class="footer__links">
+            <li><a href="contact.html" class="footer__link">Word vrijwilliger</a></li>
+            <li><a href="contact.html" class="footer__link">Doneer</a></li>
+            <li><a href="contact.html" class="footer__link">Partner worden</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__title">Contact</p>
+          <address class="footer__address" style="font-style: normal;">
+            vzw Burgers in Beweging<br>
+            Terboekt 49<br>
+            3600 Genk<br><br>
+            <a href="mailto:info@bokesensoep.be" class="footer__link">info@bokesensoep.be</a>
+          </address>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 vzw Burgers in Beweging · Alle rechten voorbehouden</p>
+        <p class="footer__btw">BTW BE 0599.882.939</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function filterNews(category, btn) {
+      // Update button styles
+      document.querySelectorAll('.news-item').forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      // Update active button
+      document.querySelectorAll('[onclick^="filterNews"]').forEach(b => {
+        b.className = 'btn btn--outline';
+        b.style.fontSize = '0.875rem';
+        b.style.padding = '0.6rem 1.25rem';
+      });
+      btn.className = 'btn btn--primary';
+      btn.style.fontSize = '0.875rem';
+      btn.style.padding = '0.6rem 1.25rem';
+    }
+
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const msg = document.getElementById('newsletter-msg');
+      msg.textContent = '✓ Bedankt! Je staat nu ingeschreven voor onze nieuwsbrief.';
+      msg.style.color = 'rgba(255,255,255,0.9)';
+      document.getElementById('newsletter-email').value = '';
+    }
+  </script>
+</body>
+</html>
