@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE: ghcr.io/wooter/bokesensoep
+  IMAGE: ghcr.io/wooter/bokesensoep-html
 
 jobs:
   build-and-deploy:
@@ -28,11 +28,11 @@ jobs:
           if [[ "$REF_TYPE" == "tag" ]]; then
             echo "env_name=prod" >> $GITHUB_OUTPUT
             echo "image_tag=$REF_NAME" >> $GITHUB_OUTPUT
-            echo "deploy_dir=~/bokesensoep/prod" >> $GITHUB_OUTPUT
+            echo "deploy_dir=~/bokesensoep-html/prod" >> $GITHUB_OUTPUT
           else
-            echo "env_name=acc" >> $GITHUB_OUTPUT
-            echo "image_tag=acc" >> $GITHUB_OUTPUT
-            echo "deploy_dir=~/bokesensoep/acc" >> $GITHUB_OUTPUT
+            echo "env_name=dev2" >> $GITHUB_OUTPUT
+            echo "image_tag=dev2" >> $GITHUB_OUTPUT
+            echo "deploy_dir=~/bokesensoep-html/dev2" >> $GITHUB_OUTPUT
           fi
 
       - name: Log in to GHCR
@@ -50,6 +50,7 @@ jobs:
         with:
           context: .
           push: true
+          platforms: linux/amd64
           tags: ${{ env.IMAGE }}:${{ steps.env.outputs.image_tag }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
