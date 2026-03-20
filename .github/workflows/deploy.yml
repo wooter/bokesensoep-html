@@ -71,5 +71,6 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H fsn1 >> ~/.ssh/known_hosts 2>/dev/null
-          ssh wouter@fsn1 "cd $DEPLOY_DIR && sed -i 's/^IMAGE_TAG=.*/IMAGE_TAG='\"$IMAGE_TAG\"'/' .env && docker compose pull && docker compose up -d"
+          sleep 5
+          ssh-keyscan -H fsn1 >> ~/.ssh/known_hosts 2>/dev/null || ssh-keyscan -H 100.118.111.71 >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -o StrictHostKeyChecking=accept-new wouter@fsn1 "cd $DEPLOY_DIR && sed -i 's/^IMAGE_TAG=.*/IMAGE_TAG='\"$IMAGE_TAG\"'/' .env && docker compose pull && docker compose up -d"
