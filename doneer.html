@@ -17,32 +17,23 @@
       max-width: 360px;
       margin: 0 auto;
     }
-    .qr-placeholder {
+    .qr-container {
       width: 200px;
       height: 200px;
-      margin: 0 auto 1.5rem;
-      border: 3px solid var(--cream-dark);
-      border-radius: var(--radius-md);
+      margin: 0 auto 1rem;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
-      color: var(--warm-gray-light);
-      gap: 0.5rem;
-      background: var(--cream);
-      position: relative;
-      overflow: hidden;
+      background: var(--white);
+      border-radius: var(--radius-md);
     }
-    .qr-placeholder::before {
-      content: '';
-      position: absolute;
-      inset: 12px;
-      border: 8px solid var(--cream-dark);
-      border-radius: 4px;
+    .qr-container canvas { border-radius: var(--radius-md); }
+    .qr-amount-label {
+      font-size: 0.8125rem;
+      color: var(--warm-gray);
+      margin-bottom: 1.5rem;
     }
-    .qr-icon { font-size: 2.5rem; position: relative; z-index: 1; }
-    .qr-note { font-size: 0.75rem; color: var(--warm-gray-light); position: relative; z-index: 1; }
+    .qr-amount-label strong { color: var(--red); }
     .iban-display {
       background: var(--cream);
       border-radius: var(--radius-md);
@@ -172,10 +163,8 @@
           <div class="qr-wrapper">
             <p style="font-size: 0.875rem; font-weight: 700; color: var(--warm-gray); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.08em;">Betaal via QR code of overschrijving</p>
 
-            <div class="qr-placeholder" id="qr-code">
-              <span class="qr-icon">&#128241;</span>
-              <span class="qr-note">QR code binnenkort beschikbaar</span>
-            </div>
+            <div class="qr-container" id="qr-code"></div>
+            <p class="qr-amount-label">Bedrag: <strong id="qr-amount-text">&euro;25</strong></p>
 
             <div class="iban-display" id="iban-block" title="Klik om te kopiëren">
               <p class="iban-label">Rekeningnummer (IBAN)</p>
@@ -359,8 +348,40 @@
   </footer>
 
   <script src="script.js?v=2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
   <script>
-    // Amount selector - all data from data attributes, no runtime HTML
+    // EPC QR code generator for SEPA transfers
+    function generateEpcQr(amount) {
+      var epcData = [
+        'BCD',           // Service Tag
+        '002',           // Version
+        '1',             // Character set (UTF-8)
+        'SCT',           // Identification
+        'GEBABEBB',      // BIC
+        'vzw Burgers in Beweging', // Beneficiary
+        'BE82001973035368',        // IBAN
+        'EUR' + amount,  // Amount
+        '',              // Purpose
+        '',              // Remittance (structured)
+        'Donatie Bokes en Soep'  // Remittance (unstructured)
+      ].join('\n');
+
+      var container = document.getElementById('qr-code');
+      while (container.firstChild) { container.removeChild(container.firstChild); }
+      QRCode.toCanvas(epcData, {
+        width: 200,
+        margin: 2,
+        color: { dark: '#2D2926', light: '#FFFFFF' }
+      }, function(err, canvas) {
+        if (!err) {
+          canvas.style.borderRadius = 'var(--radius-md)';
+          container.appendChild(canvas);
+        }
+      });
+      document.getElementById('qr-amount-text').textContent = '\u20AC' + amount;
+    }
+
+    // Amount selector
     document.querySelectorAll('.amount-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         document.querySelectorAll('.amount-btn').forEach(function(b) { b.classList.remove('selected'); });
@@ -373,8 +394,12 @@
         document.getElementById('impact-text').textContent =
           'Met \u20AC' + amount + ' voorzien we ' + impact + ' van soep en brood voor een week!';
         document.getElementById('impact-bar').style.width = pct + '%';
+        generateEpcQr(amount);
       });
     });
+
+    // Generate initial QR code for default amount (25)
+    generateEpcQr('25');
 
     // Copy IBAN to clipboard
     document.getElementById('iban-block').addEventListener('click', function() {
